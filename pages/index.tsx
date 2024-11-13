@@ -4,6 +4,38 @@ import Head from "next/head";
 
 export default function Home() {
   const [input, setInput] = useState("");
+  //const [error, setError] = useState(false);
+  //const [suggestion, setSuggestion] = useState("");
+  //const [loading, setLoading] = useState(false);
+
+  const submit = async () => {
+    // Check if character limit is exceeded
+    //if (input.length > 100) return setError(true);
+
+    // Set loading state
+    //setLoading(true);
+
+    try {
+      const res = await fetch("/api/marketing-ai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ input }),
+      });
+
+      //const suggestion: { result: string } = await res.json();
+      //const { result } = suggestion;
+      //console.log("result", result);
+      const suggestion: string = await res.json();
+      console.log(suggestion);
+      //setSuggestion(result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      //setLoading(false);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -41,6 +73,13 @@ export default function Home() {
               <span>{input.length}</span>/100
             </div>
           </div>
+          <button
+            type="button"
+            onClick={submit}
+            className="bg-blue-500 h-12 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Generate
+          </button>
         </div>
       </div>
     </div>
