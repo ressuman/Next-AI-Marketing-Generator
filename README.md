@@ -178,11 +178,7 @@ This project is licensed under the MIT License. See `LICENSE` for more details.
 
 ---
 
-## Contact
-
-For support or inquiries, contact **[Your Name/Company]** at **your-email@example.com**.
-
-## Getting Started
+## Start
 
 First, run the development server:
 
